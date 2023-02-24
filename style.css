@@ -1,0 +1,179 @@
+:root{
+}
+body{
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.col{
+    color: rgb(16, 22, 109);
+    
+}
+
+.container{
+    width:70%;
+    justify-content: center;
+}
+
+.task-entry-labels{
+    letter-spacing: .3rem;
+    font-size: 1.2rem;
+}
+
+h1{
+    letter-spacing: .3rem;
+    word-spacing: .3rem;
+}
+
+h3{
+    word-spacing: .3rem;
+    font-weight: 700;
+    color: rgba(0,0,0,0.5)
+}
+
+input[type=text]{
+    width: 50%;
+}
+
+::placeholder{
+    color:rgba(0,0,0,0.3);
+}
+
+input[type=text], 
+input[type=date]{
+    box-shadow: 2px 2px #888888;
+    background-color: rgb(221, 218, 218);
+    outline: none;
+    border: none;
+    border-radius: 5%;
+    color:rgba(0,0,0,1);
+}
+
+.task-type-input{
+    display: none;
+}
+
+.task-type-label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    letter-spacing: .2rem;
+    padding: 0.5rem;
+    cursor:pointer;
+}
+
+#school-label{
+    color: rgba(145, 23, 128, 0.61);
+}
+
+#personal-label{
+    color:rgba(16, 22, 109,0.5);
+}
+
+#work-label{
+    color:rgba(0,0,0,0.5);
+}
+
+.bubble{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid rgba(145, 23, 128, 0.61);
+    box-shadow:  rgba(145, 23, 128, 0.61);
+}
+
+.bubble.personal-bubble{
+    border-color: rgba(16, 22, 109,0.5);
+    box-shadow:  rgba(16, 22, 109,0.5);
+}
+
+.bubble.work-bubble{
+    border-color: rgba(0,0,0,0.5);
+    box-shadow: rgba(0,0,0,0.5);
+}
+
+.bubble::after{
+    content: "";
+    display: block;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+    background-color: rgba(145, 23, 128, 0.61);
+    box-shadow: rgba(145, 23, 128, 0.61);
+    border-radius: 50%;
+    transition: 0.2s;
+
+}
+
+.bubble.personal-bubble::after{
+    background-color: rgba(16, 22, 109,0.5);
+    box-shadow: rgba(16, 22, 109,0.5);
+}
+
+.bubble.work-bubble::after{
+    background-color: rgba(0,0,0,0.5);
+    box-shadow: rgba(0,0,0,0.5);
+}
+
+input:checked ~ .bubble::after{
+    width:10px;
+    height:10px;
+    opacity: 1;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+.task-list .list-group-item{
+    margin-top: 1rem;
+}
+
+.school-type{
+    color: rgba(145, 23, 128, 0.61);
+}
+
+.work-type{
+    color: rgba(0,0,0,0.5);
+}
+
+.subtask{
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+
+/* ul {
+    display: table;
+    margin: 0 auto;
+    width: 75%;
+  }
+
+li{
+    list-style: none;
+    border: none;
+    cursor: pointer;
+    height: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 50px;
+    color: rgb(47, 0, 255);
+    
+    
+}
+
+li:hover{
+    background-color: grey;
+} */
+
+
+
