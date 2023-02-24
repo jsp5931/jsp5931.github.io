@@ -152,6 +152,17 @@ input:checked ~ .bubble::after{
     margin-bottom: 1rem;
 }
 
+.content { 
+    display:inline-block;
+    width: 500px;
+    word-wrap:break-word;
+    
+}
+
+.due-date, .type{
+    width: 100px;
+}
+
 
 /* ul {
     display: table;
@@ -174,6 +185,5 @@ li{
 li:hover{
     background-color: grey;
 } */
-
 
 
