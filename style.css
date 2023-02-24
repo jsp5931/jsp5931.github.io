@@ -1,7 +1,8 @@
-:root{
+.root{
+    
 }
 body{
-    
+    background-image: url('https://images.unsplash.com/photo-1642543492457-39a2ce63bb59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .col{
@@ -10,10 +11,13 @@ body{
 }
 
 .container{
-    width:70%;
     justify-content: center;
+    background: linear-gradient(to right,#F96765, #A0F4E7);
 }
 
+#flexSwitchCheckDefault{
+    cursor: pointer;
+}
 .task-entry-labels{
     letter-spacing: .3rem;
     font-size: 1.2rem;
@@ -41,7 +45,7 @@ input[type=text]{
 input[type=text], 
 input[type=date]{
     box-shadow: 2px 2px #888888;
-    background-color: rgb(221, 218, 218);
+    background-color: #E7F7F3;
     outline: none;
     border: none;
     border-radius: 5%;
@@ -154,7 +158,7 @@ input:checked ~ .bubble::after{
 
 .content { 
     display:inline-block;
-    width: 500px;
+    width: 300px;
     word-wrap:break-word;
     
 }
