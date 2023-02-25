@@ -13,6 +13,9 @@ function handleForm(event) {
 
 
 function addsupertask(){
+    if(document.querySelector('input[name="type"]:checked') ==""){
+      alert("select a type");
+    }
     var task_type_input = document.querySelector('input[name="type"]:checked').value;
     var numitems = task_list.children.length;
     var li = document.createElement('li');
@@ -54,6 +57,10 @@ function addsupertask(){
     var due_date = document.createElement('h4');
     due_date.classList.add('due-date');
     var x = document.createTextNode(date_input.value);
+    if(date_input.value!=''){
+      var y= document.createTextNode('Due'+" ");
+      due_date.appendChild(y);
+    }
     due_date.appendChild(x);
     date_span.appendChild(due_date);
     supertask.appendChild(date_span);
@@ -198,8 +205,14 @@ function addsupertask(){
   https://stackoverflow.com/questions/59506089/creating-a-delete-button-in-javascript-to-remove-shopping-list-items
   list_container.addEventListener('click', (e) => {
     if(e.target.classList.contains('delete-btn')){
+        if(confirm("Are you sure you want to delete?") == true){
         e.target.closest("li").remove();
-  }}
+        }
+    }
+    if(e.target.classList.contains('edit-btn')){
+      var edit= window.prompt("Whats up");
+    }
+}
   )
   
 
