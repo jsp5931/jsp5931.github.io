@@ -119,11 +119,17 @@ function addsupertask(){
     var wholeitem = e.target.parentElement.parentElement.parentElement;
     var taskname = e.target.previousElementSibling;
     var subtasks = wholeitem.getElementsByClassName('subtask');
-    
+
     if(e.target.checked){ 
       if(wholeitem.classList.contains("full-task")){
+        var task_due_date = wholeitem.children[0].children[1].children[0];
+        var task_category = wholeitem.children[0].children[2].children[0];
+        var task_icon = wholeitem.children[0].children[2].children[1];
         wholeitem.classList.add('checked');
         taskname.children[0].classList.add('checked');
+        task_due_date.classList.add('checked');
+        task_category.classList.add('checked');
+        task_icon.classList.add('checked');
         
         for(var j=0;j<subtasks.length;j++){
           subtasks[j].getElementsByClassName('nomen')[0].classList.add("checked");
@@ -142,9 +148,14 @@ function addsupertask(){
         taskname.children[0].classList.remove('checked');
       }
       else{
-
+        var task_due_date = wholeitem.children[0].children[1].children[0];
+        var task_category = wholeitem.children[0].children[2].children[0];
+        var task_icon = wholeitem.children[0].children[2].children[1];
         wholeitem.classList.remove('checked');
         taskname.children[0].classList.remove('checked');
+        task_due_date.classList.remove('checked');
+        task_category.classList.remove('checked');
+        task_icon.classList.remove('checked');
         for(var k=0;k<subtasks.length;k++){
           subtasks[k].getElementsByClassName('form-check-input')[0].removeAttribute("disabled");
           subtasks[k].getElementsByClassName('form-check-input')[0].checked=false;
