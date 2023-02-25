@@ -11,7 +11,6 @@ body{
 .container{
     margin:0 auto;
     justify-content: center;
-    /* background: linear-gradient(to right,#F96765, #A0F4E7); */
     background: white;
 }
 
@@ -60,7 +59,6 @@ h4{
     word-wrap: normal;
 }
 li{
-    webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
