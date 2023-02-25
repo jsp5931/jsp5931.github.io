@@ -44,19 +44,33 @@ h4{
     color:rgba(0,0,0,0.3);
 }
 
-input[type=text], 
-input[type=date]{
-    box-shadow: 2px 2px #888888;
-    background-color: #E7F7F3;
-    outline: none;
-    border: none;
-    border-radius: 5%;
-    color:rgba(0,0,0,1);
+#task-input, #date-input{
+    box-shadow: 1px 1px rgba(0,0,0,0.3);
 }
 
+.checked{
+    text-decoration: line-through;
+}
+
+.task-content{
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: initial;
+    word-wrap: normal;
+}
+li{
+    webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .task-type-input{
     display: none;
 }
+
+
 
 .task-type-label{
     display:flex;
@@ -125,6 +139,7 @@ input[type=date]{
     background-color: rgba(0,0,0,0.5);
     box-shadow: rgba(0,0,0,0.5);
 }
+
 
 input:checked ~ .bubble::after{
     width:10px;

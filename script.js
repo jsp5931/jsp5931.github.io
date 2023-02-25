@@ -34,9 +34,11 @@ function addsupertask(){
     label.classList.add('form-check-label');
     label.setAttribute('for', 'task'+(numitems+1));
     var task_content = document.createElement('h4');
+    task_content.classList.add('nomen');
     var t = document.createTextNode(task_input.value);
     var checkbox = document.createElement('input');
-    checkbox.classList.add('form-check-input');
+    checkbox.addEventListener("change", handlecheck);
+    checkbox.classList.add('form-check-input','complete-check');
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('value',"");
     checkbox.setAttribute('id','task'+(numitems+1));
@@ -108,9 +110,59 @@ function addsupertask(){
     task_list.appendChild(li);
     task_form.reset();
 
+  }
 
-}
 
+    var checkboxes = document.getElementsByClassName("complete-check"), i;
+    
+    const handlecheck = (e) => {
+    var wholeitem = e.target.parentElement.parentElement.parentElement;
+    var taskname = e.target.previousElementSibling;
+    var subtasks = wholeitem.getElementsByClassName('subtask');
+    
+    if(e.target.checked){ 
+      if(wholeitem.classList.contains("full-task")){
+        wholeitem.classList.add('checked');
+        taskname.children[0].classList.add('checked');
+        
+        for(var j=0;j<subtasks.length;j++){
+          subtasks[j].getElementsByClassName('nomen')[0].classList.add("checked");
+          subtasks[j].getElementsByClassName('form-check-input')[0].checked=true;
+          subtasks[j].getElementsByClassName('form-check-input')[0].setAttribute("disabled","");
+        }
+      }
+      else{
+        wholeitem.classList.add('checked');
+        taskname.children[0].classList.add('checked');
+      }  
+    }
+    else{
+      if(wholeitem.classList.contains("subtask")){
+        wholeitem.classList.remove('checked');
+        taskname.children[0].classList.remove('checked');
+      }
+      else{
+
+        wholeitem.classList.remove('checked');
+        taskname.children[0].classList.remove('checked');
+        for(var k=0;k<subtasks.length;k++){
+          subtasks[k].getElementsByClassName('form-check-input')[0].removeAttribute("disabled");
+          subtasks[k].getElementsByClassName('form-check-input')[0].checked=false;
+          subtasks[k].getElementsByClassName('nomen')[0].classList.remove('checked');
+        }
+
+      }
+    }
+  }
+
+  for(i=0;i<checkboxes.length;i++){
+    checkboxes[i].addEventListener('change',handlecheck);
+  }
+
+
+  
+
+  
 
 
 
