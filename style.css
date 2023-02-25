@@ -11,8 +11,10 @@ body{
 }
 
 .container{
+    margin:0 auto;
     justify-content: center;
-    background: linear-gradient(to right,#F96765, #A0F4E7);
+    /* background: linear-gradient(to right,#F96765, #A0F4E7); */
+    background: white;
 }
 
 #flexSwitchCheckDefault{
@@ -34,8 +36,8 @@ h3{
     color: rgba(0,0,0,0.5)
 }
 
-input[type=text]{
-    width: 50%;
+h4{
+    font-size: 18px;
 }
 
 ::placeholder{
@@ -138,6 +140,11 @@ input:checked ~ .bubble::after{
     text-transform: uppercase;
 }
 
+.action-buttons{
+    margin-right: 0 auto;
+}
+
+
 
 .task-list .list-group-item{
     margin-top: 1rem;
@@ -151,14 +158,20 @@ input:checked ~ .bubble::after{
     color: rgba(0,0,0,0.5);
 }
 
-.subtask{
-    list-style: none;
+.personal-type{
+    color: rgba(16, 22, 109,0.5);
+}
+.subtask-contents{
     margin-bottom: 1rem;
 }
 
-.content { 
+
+ul{
+    list-style: none;
+}
+.content, .name { 
     display:inline-block;
-    width: 300px;
+    width: 250px;
     word-wrap:break-word;
     
 }
@@ -167,7 +180,16 @@ input:checked ~ .bubble::after{
     width: 100px;
 }
 
+.action-btn{
+    border-radius: 20%;
+}
+.full-task{
+    border-bottom: solid 2px black;
+}
 
+.task-name{
+    width: 200px;
+}
 /* ul {
     display: table;
     margin: 0 auto;
