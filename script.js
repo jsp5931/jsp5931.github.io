@@ -9,14 +9,11 @@ function handleForm(event) {
     event.preventDefault(); 
     addsupertask();
 } 
-
+var count=1;
 
 
 
 function addsupertask(){
-    if(document.querySelector('input[name="type"]:checked') ==""){
-      alert("select a type");
-    }
     var task_type_input = document.querySelector('input[name="type"]:checked').value;
     var numitems = task_list.children.length;
     var li = document.createElement('li');
@@ -36,7 +33,7 @@ function addsupertask(){
     content.classList.add("form-check", "task-name");
     var label = document.createElement('label');
     label.classList.add('form-check-label');
-    label.setAttribute('for', 'task'+(numitems+1));
+    label.setAttribute('for', 'task'+(numitems+1+count));
     var task_content = document.createElement('h4');
     task_content.classList.add('nomen');
     var t = document.createTextNode(task_input.value);
@@ -45,7 +42,7 @@ function addsupertask(){
     checkbox.classList.add('form-check-input','complete-check');
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('value',"");
-    checkbox.setAttribute('id','task'+(numitems+1));
+    checkbox.setAttribute('id','task'+(numitems+1+count));
     task_content.appendChild(t);
     label.appendChild(task_content);
     content.appendChild(label);
@@ -76,7 +73,6 @@ function addsupertask(){
     task_type_content.appendChild(y);
     var icon = document.createElement('div');
     icon.classList.add('icon','d-flex','justify-content-center');
-    //https://stackoverflow.com/questions/9618504/how-to-get-the-selected-radio-button-s-value
     var task_type_input = document.querySelector('input[name="type"]:checked').value;
 
     
@@ -86,9 +82,8 @@ function addsupertask(){
       </svg>`
     }
     else if(task_type_input == "Work"){
-        icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
-        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z"/>
-        <path d="M3.5 1h.585A1.498 1.498 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5c0-.175-.03-.344-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1Z"/>
+        icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+        <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
       </svg>`
     }
     else if(task_type_input == "Personal"){
@@ -104,12 +99,6 @@ function addsupertask(){
     btn_div.classList.add('btn-group');
     btn_div.setAttribute('role','group');
 
-    var edit = document.createElement('button');
-    edit.classList.add('btn', 'btn-info', 'btn-sm', 'action-btn','edit-btn');
-    edit.setAttribute('type','button');
-    edit.setAttribute('title',"Edit task");
-    edit.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-    </svg>`;
 
     var addsubtask = document.createElement('button');
     addsubtask.classList.add('btn', 'btn-success', 'btn-sm', 'action-btn','addsubtask-btn');
@@ -127,7 +116,7 @@ function addsupertask(){
   deletebtn.setAttribute('id','delete-button');
   deletebtn.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2h4a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
   </svg>`;
-    btn_div.appendChild(edit);
+    
     btn_div.appendChild(addsubtask);
     btn_div.appendChild(deletebtn);
     buttons.appendChild(btn_div);
@@ -137,8 +126,12 @@ function addsupertask(){
     supertask.appendChild(task_type);
     supertask.appendChild(buttons);
     li.appendChild(supertask);
-    li.setAttribute('id', 'item'+(numitems+1));
+    li.setAttribute('id', 'item'+(numitems+1+count));
+    var sublist = document.createElement('ul');
+    sublist.classList.add('bg-transparent','subtasks');
+    li.appendChild(sublist);
     task_list.appendChild(li);
+    count++;
     task_form.reset();
 
   }
@@ -204,7 +197,6 @@ function addsupertask(){
 
   var list_container = document.querySelector('.list-container');
   
-  https://stackoverflow.com/questions/59506089/creating-a-delete-button-in-javascript-to-remove-shopping-list-items
   list_container.addEventListener('click', (e) => {
     if(e.target.classList.contains('delete-btn')){
         if(confirm("Are you sure you want to delete?") == true){
@@ -228,7 +220,7 @@ function addsupertask(){
 
         var label = document.createElement('label');
         label.classList.add('form-check-label')
-        label.setAttribute('for','sub'+(sublist_items.length+1));
+        label.setAttribute('for','sub'+(sublist_items.length+count));
         label.appendChild(nomen);
         var x = document.createTextNode(new_sub_input.valueOf());
         nomen.appendChild(x);
@@ -238,7 +230,7 @@ function addsupertask(){
         check.classList.add('form-check-input', 'complete-check');
         check.setAttribute('type','checkbox');
         check.setAttribute('value','');
-        check.setAttribute('id','sub'+(sublist_items.length+1));
+        check.setAttribute('id','sub'+(sublist_items.length+count));
 
         var sub_name_span = document.createElement('span');
         sub_name_span.classList.add('form-check', 'task-name');
@@ -251,12 +243,6 @@ function addsupertask(){
         btn_div.classList.add('btn-group');
         btn_div.setAttribute('role','group');
 
-        var edit = document.createElement('button');
-        edit.classList.add('btn', 'btn-info', 'btn-sm', 'action-btn','edit-btn');
-        edit.setAttribute('type','button');
-        edit.setAttribute('title',"Edit task");
-        edit.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-        </svg>`;
 
         var deletebtn = document.createElement('button');
         deletebtn.classList.add('btn', 'btn-danger', 'btn-sm', 'action-btn','delete-btn');
@@ -266,7 +252,7 @@ function addsupertask(){
         deletebtn.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2h4a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
         </svg>`;
 
-        btn_div.appendChild(edit);
+        
         btn_div.appendChild(deletebtn);
         buttons.appendChild(btn_div);
 
@@ -282,17 +268,7 @@ function addsupertask(){
         var list = e.target.closest('li').querySelector('ul');
 
         list.append(subtask);
-
-
-        
-
-        
-        
-
-
-        
-
-        
+        count++;  
       }
     }
 })
