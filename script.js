@@ -12,6 +12,7 @@ function handleForm(event) {
 
 
 
+
 function addsupertask(){
     if(document.querySelector('input[name="type"]:checked') ==""){
       alert("select a type");
@@ -123,7 +124,7 @@ function addsupertask(){
   deletebtn.classList.add('btn', 'btn-danger', 'btn-sm', 'action-btn','delete-btn');
   deletebtn.setAttribute('type','button');
   deletebtn.setAttribute('title', 'Delete Task')
-  deletebtn.setAttribute('id','delete-button'+(numitems+1));
+  deletebtn.setAttribute('id','delete-button');
   deletebtn.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2h4a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
   </svg>`;
     btn_div.appendChild(edit);
@@ -143,9 +144,10 @@ function addsupertask(){
   }
 
 
-    var checkboxes = document.getElementsByClassName("complete-check"), i;
     
+  var checkboxes = document.getElementsByClassName("complete-check"), i;
     const handlecheck = (e) => {
+    
     var wholeitem = e.target.parentElement.parentElement.parentElement;
     var taskname = e.target.previousElementSibling;
     var subtasks = wholeitem.getElementsByClassName('subtask');
@@ -188,8 +190,8 @@ function addsupertask(){
         task_icon.classList.remove('checked');
         for(var k=0;k<subtasks.length;k++){
           subtasks[k].getElementsByClassName('form-check-input')[0].removeAttribute("disabled");
-          // subtasks[k].getElementsByClassName('form-check-input')[0].checked=false;
-          // subtasks[k].getElementsByClassName('nomen')[0].classList.remove('checked');
+          subtasks[k].getElementsByClassName('form-check-input')[0].checked=false;
+          subtasks[k].getElementsByClassName('nomen')[0].classList.remove('checked');
         }
 
       }
@@ -210,10 +212,91 @@ function addsupertask(){
         }
     }
     if(e.target.classList.contains('edit-btn')){
-      var edit= window.prompt("Whats up");
+      var new_task= window.prompt("Enter task");
+      var new_date=window.prompt("Enter the due date as YYYY-MM-DD");
+      var new_type=window.prompt("Enter task type: School, Work, or Personal");
     }
-}
-  )
+    if(e.target.classList.contains('addsubtask-btn')){
+      var new_sub_input=window.prompt("Enter new subtask");
+      if(new_sub_input){
+        
+        console.log(new_sub_input.valueOf());
+        console.log(new_sub_input);
+        var sublist_items = e.target.closest('li').getElementsByClassName('subtask');
+        var nomen = document.createElement('h4');
+        nomen.classList.add('nomen');
+
+        var label = document.createElement('label');
+        label.classList.add('form-check-label')
+        label.setAttribute('for','sub'+(sublist_items.length+1));
+        label.appendChild(nomen);
+        var x = document.createTextNode(new_sub_input.valueOf());
+        nomen.appendChild(x);
+
+        var check = document.createElement('input');
+        check.addEventListener("change", handlecheck);
+        check.classList.add('form-check-input', 'complete-check');
+        check.setAttribute('type','checkbox');
+        check.setAttribute('value','');
+        check.setAttribute('id','sub'+(sublist_items.length+1));
+
+        var sub_name_span = document.createElement('span');
+        sub_name_span.classList.add('form-check', 'task-name');
+        sub_name_span.appendChild(label);
+        sub_name_span.appendChild(check);
+
+        var buttons = document.createElement('span');
+        buttons.classList.add('action-buttons');
+        var btn_div = document.createElement('div');
+        btn_div.classList.add('btn-group');
+        btn_div.setAttribute('role','group');
+
+        var edit = document.createElement('button');
+        edit.classList.add('btn', 'btn-info', 'btn-sm', 'action-btn','edit-btn');
+        edit.setAttribute('type','button');
+        edit.setAttribute('title',"Edit task");
+        edit.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16"><path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+        </svg>`;
+
+        var deletebtn = document.createElement('button');
+        deletebtn.classList.add('btn', 'btn-danger', 'btn-sm', 'action-btn','delete-btn');
+        deletebtn.setAttribute('type','button');
+        deletebtn.setAttribute('title', 'Delete Task')
+        deletebtn.setAttribute('id','delete-button');
+        deletebtn.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2h4a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+        </svg>`;
+
+        btn_div.appendChild(edit);
+        btn_div.appendChild(deletebtn);
+        buttons.appendChild(btn_div);
+
+        var subtask_contents = document.createElement('div');
+        subtask_contents.classList.add('subtask-contents', 'd-flex', 'justify-content-between','align-items-center');
+        subtask_contents.appendChild(sub_name_span);
+        subtask_contents.appendChild(buttons);
+
+        var subtask = document.createElement('li');
+        subtask.classList.add('bg-transparent', 'subtask');
+        subtask.appendChild(subtask_contents);
+
+        var list = e.target.closest('li').querySelector('ul');
+
+        list.append(subtask);
+
+
+        
+
+        
+        
+
+
+        
+
+        
+      }
+    }
+})
+  
   
 
   
